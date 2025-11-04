@@ -1,0 +1,52 @@
+class Phone
+{
+    private int battery;
+    public string Brand { get; init; }
+
+    public int BatteryLevel
+    {
+        get => battery;
+        set
+        {
+            if (value < 0)
+            {
+                battery = 0;
+            }
+            else if (value > 100)
+            {
+                Console.WriteLine("Заряд не может превышать 100!");
+            }
+            else
+            {
+                battery = value;
+            }
+        }
+    }
+
+    public Phone(string brand, int startBattery)
+    {
+        Brand = brand;
+        BatteryLevel = startBattery;
+    }
+
+    public void Use()
+    {
+        BatteryLevel -= 10;
+        if (BatteryLevel < 0) BatteryLevel = 0;
+        Console.WriteLine($"{Brand}: заряд {BatteryLevel}%.");
+    }
+
+    static void Main(string[] args)
+    {
+        Phone phone = new Phone("Xiaomi", 80);
+
+
+        phone.Use();
+        phone.Use();
+        phone.Use();
+
+        phone.BatteryLevel = 150;
+
+        Console.ReadLine();
+    }
+}
