@@ -1,0 +1,46 @@
+class Book
+{
+    private string title;
+    public int Pages { get; set; } = 1;
+    public bool IsLong => Pages > 300;
+
+    public string Title
+    {
+        get => title;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value)) 
+            {
+                Console.WriteLine("Название не может быть пустым!");
+            }
+            else
+                title = value;
+        }
+    }
+
+    public Book(string title)
+    {
+        Title = title;
+    }
+
+    public void Info()
+    {
+        string longText = IsLong ? "да" : "нет";
+        Console.WriteLine($"Книга: {Title}, страниц: {Pages}, длинная: {longText}");
+    }
+
+    static void Main(string[] args)
+    {
+        Book book = new Book("Война и мир");
+        book.Pages = 1200;
+        book.Info();
+        
+        book.Title = "";
+        book.Info();
+        
+        Book shortBook = new Book("Краткая история");
+        shortBook.Info();
+
+        Console.ReadLine();
+    }
+}
